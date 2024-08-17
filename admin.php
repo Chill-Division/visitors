@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['password'])) {
         }
 
         // 3. Fetch and display visitor activity
-        $sql = "SELECT * FROM visitors ORDER BY timestamp DESC"; 
+        $sql = "SELECT * FROM visitors ORDER BY timestamp DESC LIMIT 100"; 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

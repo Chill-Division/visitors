@@ -1,2 +1,14 @@
 # visitors
 A simple visitor sign in / out tracker
+
+<pre>https://github.com/Chill-Division/visitors.git</pre>
+
+Edit the details in the schema.sql to add / remove any "Terms" you want the guest to acknowledge. You can add more to the database later and it'll automatically amend what's shown to visitors. There is no "They only accepted some", it's more of a "All the terms were acknowledged" scenario.
+
+Edit the database information in config.php and set a strong admin password
+
+Then import the database:
+
+</pre>mysql -u your_username -p < visitors/schema.sql</pre>
+
+Optionally in process.php there is the capacity to IP-restrict this to just your sites IP address. Useful if it's a publicly accessible sign-in site and you want to avoid any random sign-ins.

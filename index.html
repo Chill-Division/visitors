@@ -3,8 +3,7 @@
 <head>
     <title>Visitor Sign-In</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>   
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
     <main class="container">
@@ -14,8 +13,7 @@
             <input type="text" id="name" name="name" required><br>
 
             <label for="contact">Contact #:</label>
-            <input type="text" id="contact" name="contact" required><br>   
-
+            <input type="text" id="contact" name="contact" required><br>
 
             <label for="company">Company:</label>
             <input type="text" id="company" name="company"><br>
@@ -49,7 +47,21 @@
             // 2. Handle sign-in form submission
             $('#sign-in-form').submit(function(event) {
                 event.preventDefault(); 
-                // AJAX submission logic (similar to terms retrieval)
+
+                // Gather form data including checked terms
+                var formData = $(this).serializeArray();
+                formData.push({ name: 'action', value: 'sign_in' }); 
+
+                $.ajax({
+                    url: 'process.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        alert(response); 
+                        // Clear the form fields after successful sign-in
+                        $('#sign-in-form')[0].reset(); 
+                    }
+                });
             });
 
             // 3. Handle sign-out name input
@@ -67,6 +79,22 @@
                 } else {
                     $('#sign-out-options').empty(); 
                 }
+            });
+
+            // 4. Handle sign-out button click and reset the form
+            $(document).on('click', '.sign-out-button', function() {
+                var visitorId = $(this).data('visitor-id');
+                $.ajax({
+                    url: 'process.php',
+                    type: 'POST',
+                    data: { action: 'sign_out', visitorId: visitorId },
+                    success: function(response) {
+                        alert(response); 
+                        // Clear the sign-out options and the search input
+                        $('#sign-out-options').empty();
+                        $('#sign-out-name').val(''); 
+                    }
+                });
             });
         });
     </script>

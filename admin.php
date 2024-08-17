@@ -1,15 +1,10 @@
 <?php
 // 1. Password authentication (Basic - Enhance for production)
-$adminPassword = "your_admin_password"; // Replace with a strong password
+require_once 'config.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['password'])) {
     $enteredPassword = $_POST['password'];
     if ($enteredPassword == $adminPassword) {
-        // 2. MariaDB connection
-        $servername = "your_servername"; 
-        $username = "your_username";
-        $password = "your_password";
-        $dbname = "your_dbname";
-
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);

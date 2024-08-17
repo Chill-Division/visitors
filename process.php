@@ -1,9 +1,6 @@
 <?php
 // 1. MariaDB connection
-$servername = "your_servername"; 
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_dbname";
+require_once 'config.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {

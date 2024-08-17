@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visitor Sign-In</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>   
+
+</head>
+<body>
+    <main class="container">
+        <h1>Visitor Sign-In</h1>
+        <form id="sign-in-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="contact">Contact #:</label>
+            <input type="text" id="contact" name="contact" required><br>   
+
+
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company"><br>
+
+            <label for="visiting">Visiting:</label>
+            <input type="text" id="visiting" name="visiting" required><br>
+
+            <div id="terms"></div> 
+
+            <button type="submit">Sign In</button>
+        </form>
+
+        <h2>Sign Out</h2>
+        <label for="sign-out-name">Start typing your name:</label>
+        <input type="text" id="sign-out-name">
+        <div id="sign-out-options"></div>
+    </main>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Fetch and display terms on page load
+            $.ajax({
+                url: 'process.php',
+                type: 'POST',
+                data: { action: 'get_terms' },
+                success: function(response) {
+                    $('#terms').html(response);
+                }
+            });
+
+            // 2. Handle sign-in form submission
+            $('#sign-in-form').submit(function(event) {
+                event.preventDefault(); 
+                // AJAX submission logic (similar to terms retrieval)
+            });
+
+            // 3. Handle sign-out name input
+            $('#sign-out-name').on('input', function() {
+                let searchTerm = $(this).val();
+                if (searchTerm.length >= 3) {
+                    $.ajax({
+                        url: 'process.php',
+                        type: 'POST',
+                        data: { action: 'search_for_sign_out', searchTerm: searchTerm },
+                        success: function(response) {
+                            $('#sign-out-options').html(response);
+                        }
+                    });
+                } else {
+                    $('#sign-out-options').empty(); 
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,9 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visitor Sign-In</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        @media (min-width: 769px) {
+            .container {
+                max-width: 1130px;
+                margin: 0 auto;
+            }
+        }
+        form {
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 <body>
     <main class="container">
@@ -21,7 +44,7 @@
             <label for="visiting">Visiting:</label>
             <input type="text" id="visiting" name="visiting" required><br>
 
-            <div id="terms"></div> 
+            <div id="terms"></div>
 
             <button type="submit">Sign In</button>
         </form>
@@ -46,25 +69,25 @@
 
             // 2. Handle sign-in form submission
             $('#sign-in-form').submit(function(event) {
-                event.preventDefault(); 
+                event.preventDefault();
 
                 // Gather form data including checked terms
                 var formData = $(this).serializeArray();
-                formData.push({ name: 'action', value: 'sign_in' }); 
+                formData.push({ name: 'action', value: 'sign_in' });
 
                 $.ajax({
                     url: 'process.php',
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                        alert(response); 
+                        alert(response);
                         // Clear the form fields after successful sign-in
-                        $('#sign-in-form')[0].reset(); 
+                        $('#sign-in-form')[0].reset();
                     }
                 });
             });
 
-            // 3. Handle sign-out name input
+            // 3. Handle sign-out name input (remains the same)
             $('#sign-out-name').on('input', function() {
                 let searchTerm = $(this).val();
                 if (searchTerm.length >= 3) {
@@ -77,11 +100,11 @@
                         }
                     });
                 } else {
-                    $('#sign-out-options').empty(); 
+                    $('#sign-out-options').empty();
                 }
             });
 
-            // 4. Handle sign-out button click and reset the form
+            // 4. Handle sign-out button click
             $(document).on('click', '.sign-out-button', function() {
                 var visitorId = $(this).data('visitor-id');
                 $.ajax({
@@ -89,10 +112,10 @@
                     type: 'POST',
                     data: { action: 'sign_out', visitorId: visitorId },
                     success: function(response) {
-                        alert(response); 
+                        alert(response);
                         // Clear the sign-out options and the search input
                         $('#sign-out-options').empty();
-                        $('#sign-out-name').val(''); 
+                        $('#sign-out-name').val('');
                     }
                 });
             });

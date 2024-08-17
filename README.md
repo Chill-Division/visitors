@@ -1,7 +1,12 @@
 # visitors
 A simple visitor sign in / out tracker
 
-<pre>https://github.com/Chill-Division/visitors.git</pre>
+This is designed to allow visitors to quickly check in to your site, while not causing any issues if they don't sign out.
+
+We also wanted it to be quick and easy to sign out so there are no in-person traffic-jams from that taking place.
+
+## Install
+<pre>git clonehttps://github.com/Chill-Division/visitors.git</pre>
 
 Edit the details in the schema.sql to add / remove any "Terms" you want the guest to acknowledge. You can add more to the database later and it'll automatically amend what's shown to visitors. There is no "They only accepted some", it's more of a "All the terms were acknowledged" scenario.
 

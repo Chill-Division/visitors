@@ -1,5 +1,5 @@
 # Visitor sign-in by Chill Division
-A simple visitor facility sign in / out tracker
+A simple facility visitor sign in / out tracker
 
 This is designed to allow visitors to quickly check in to your site, while not causing any issues if they don't sign out.
 

@@ -19,10 +19,10 @@ CREATE TABLE terms (
 -- Pre-populate terms, you can remove / modify these if you wish
 INSERT INTO terms (term_text) VALUES
 ('I understand that as a guest, I am required to be always escorted by staff while on the premises, unless there is NO cannabis biomass on site.'),
+('I will maintain the same high level of health and hygiene standards as staff members, including wearing gloves and other PPE items as instructed.'),
 ('I acknowledge that I will not be issued any form of security clearance such as PINs or key fobs.'),
 ('I agree that any items I bring into the facility may be subject to search before I leave the premises.'),
 ('If I am a contractor, I will bring only the minimum tools necessary to perform my job and understand that toolboxes may be subject to search.'),
-('I will maintain the same high level of health and hygiene standards as staff members, including wearing gloves and other PPE items as instructed.'),
 ('I will not access any areas containing cannabis biomass without an escort.'),
 ('If I need to leave a room where maintenance is being performed, I understand that I must leave with my escort and wait in a designated area.'),
 ('I agree to sign out and record the date and time of my departure before leaving the premises.'),

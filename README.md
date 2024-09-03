@@ -8,7 +8,7 @@ We also wanted it to be quick and easy to sign out so there are no in-person tra
 ![image](https://github.com/user-attachments/assets/00f7afc7-c646-4c2a-b93b-92184f5ee422)
 
 ## Install
-<pre>git clonehttps://github.com/Chill-Division/visitors.git</pre>
+<pre>git clone https://github.com/Chill-Division/visitors.git</pre>
 
 Edit the details in the schema.sql to add / remove any "Terms" you want the guest to acknowledge. You can add more to the database later and it'll automatically amend what's shown to visitors. There is no "They only accepted some", it's more of a "All the terms were acknowledged" scenario.
 
@@ -19,3 +19,5 @@ Then import the database:
 </pre>mysql -u your_username -p < visitors/schema.sql</pre>
 
 Optionally in process.php there is the capacity to IP-restrict this to just your sites IP address. Useful if it's a publicly accessible sign-in site and you want to avoid any random sign-ins.
+
+Modify your config.php to include the servername / user / pass / dbname too
